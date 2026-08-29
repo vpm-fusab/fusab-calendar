@@ -43,7 +43,7 @@
       --text: #000000;
       --blue: #192F93;
       --muted: #3D3D3D;
-      --line: rgba(0, 0, 0, .14);
+      --line: rgba(0, 0, 0, 0.14);
       --max: 1100px;
     }
 
@@ -96,8 +96,8 @@
       font-style: italic;
       font-weight: 900;
       color: var(--blue);
-      line-height: .88;
-      letter-spacing: -.045em;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
     }
 
     .subscribe-wrap {
@@ -121,9 +121,9 @@
       font-weight: 700;
       white-space: nowrap;
       transition:
-        background .2s ease,
-        color .2s ease,
-        transform .2s ease;
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
     }
 
     .subscribe:hover,
@@ -183,8 +183,8 @@
       font-size: 46px;
       font-weight: 700;
       color: var(--text);
-      line-height: .92;
-      letter-spacing: -.035em;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
     }
 
     .weekday {
@@ -194,7 +194,7 @@
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .05em;
+      letter-spacing: 0.05em;
     }
 
     .event h2 {
@@ -204,8 +204,8 @@
       font-style: italic;
       font-weight: 900;
       color: var(--blue);
-      line-height: .95;
-      letter-spacing: -.02em;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
     }
 
     .meta {
@@ -232,8 +232,6 @@
       color: var(--muted);
       font-size: 20px;
     }
-
-    /* NORMAL RESPONSIVE MODE */
 
     @media (max-width: 900px) {
       body {
@@ -276,7 +274,7 @@
 
       h1 {
         font-size: clamp(42px, 13vw, 64px);
-        line-height: .9;
+        line-height: 0.9;
       }
 
       .subscribe {
@@ -326,13 +324,12 @@
     }
 
     body.embed-mode .top {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
       padding-bottom: 18px;
       border-bottom: 1px solid var(--line);
-    }
-
-    body.embed-mode .top > div:first-child {
-      display: none;
     }
 
     body.embed-mode .subscribe-wrap {
@@ -341,6 +338,14 @@
 
     body.embed-mode .subscribe-note {
       text-align: left;
+    }
+
+    body.embed-mode h1 {
+      font-size: clamp(38px, 7vw, 56px);
+    }
+
+    body.embed-mode .eyebrow {
+      font-size: 14px;
     }
 
     body.embed-mode #status {
@@ -369,7 +374,7 @@
 
     body.embed-mode .day {
       font-size: 37px;
-      line-height: .9;
+      line-height: 0.9;
     }
 
     body.embed-mode .weekday {
@@ -379,7 +384,7 @@
 
     body.embed-mode .event h2 {
       font-size: clamp(25px, 5vw, 34px);
-      line-height: .95;
+      line-height: 0.95;
       margin-bottom: 8px;
     }
 
@@ -458,7 +463,6 @@
       </div>
 
       <div class="subscribe-wrap">
-
         <a
           class="subscribe"
           href="webcal://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics"
@@ -470,7 +474,6 @@
         <p class="subscribe-note">
           Stays synced when events change.
         </p>
-
       </div>
 
     </header>
@@ -497,7 +500,6 @@
     const status =
       document.getElementById("status");
 
-
     function formatMonth(date) {
       return new Intl.DateTimeFormat(
         undefined,
@@ -508,7 +510,6 @@
       ).format(date);
     }
 
-
     function formatDay(date) {
       return new Intl.DateTimeFormat(
         undefined,
@@ -518,7 +519,6 @@
       ).format(date);
     }
 
-
     function formatWeekday(date) {
       return new Intl.DateTimeFormat(
         undefined,
@@ -527,7 +527,6 @@
         }
       ).format(date);
     }
-
 
     function formatTime(date) {
       return new Intl.DateTimeFormat(
@@ -539,7 +538,6 @@
       ).format(date);
     }
 
-
     function escapeHTML(value = "") {
       const div =
         document.createElement("div");
@@ -548,7 +546,6 @@
 
       return div.innerHTML;
     }
-
 
     function createEvent(event) {
       const start =
@@ -620,7 +617,6 @@
 
       return article;
     }
-
 
     function renderEvents(events) {
       status.style.display =
@@ -700,11 +696,9 @@
       });
     }
 
-
     fetch(
       SCRIPT_URL + "?action=events"
     )
-
       .then(response => {
         if (!response.ok) {
           throw new Error(
