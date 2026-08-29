@@ -6,6 +6,11 @@
   <title>FUSAB Events</title>
 
   <style>
+
+    /* =========================================
+       FONTS
+       ========================================= */
+
     @font-face {
       font-family: "FUSAB Matula";
       src: url("./BFMatulaW00-BlackItalic.woff2") format("woff2");
@@ -38,12 +43,17 @@
       font-display: swap;
     }
 
+
+    /* =========================================
+       COLORS
+       ========================================= */
+
     :root {
       --bg: #F5F5F5;
       --text: #000000;
       --blue: #192F93;
       --muted: #3D3D3D;
-      --line: rgba(0, 0, 0, 0.14);
+      --line: rgba(0, 0, 0, .14);
       --max: 1100px;
     }
 
@@ -61,9 +71,20 @@
 
     body {
       padding: 32px 22px 52px;
-      font-family: "FUSAB Bodoni", "Bodoni 72", Didot, serif;
+
+      font-family:
+        "FUSAB Bodoni",
+        "Bodoni 72",
+        Didot,
+        serif;
+
       font-size: 18px;
     }
+
+
+    /* =========================================
+       LAYOUT
+       ========================================= */
 
     .wrap {
       width: 100%;
@@ -75,76 +96,219 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+
       gap: 30px;
+
       padding-bottom: 28px;
-      border-bottom: 1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
     .eyebrow {
       margin: 0 0 8px;
-      font-family: "FUSAB Matula", serif;
+
+      font-family:
+        "FUSAB Matula",
+        serif;
+
       font-size: 16px;
       font-style: italic;
       font-weight: 900;
+
       color: var(--blue);
     }
 
     h1 {
       margin: 0;
-      font-family: "FUSAB Matula", serif;
-      font-size: clamp(48px, 7vw, 82px);
+
+      font-family:
+        "FUSAB Matula",
+        serif;
+
+      font-size:
+        clamp(48px, 7vw, 82px);
+
       font-style: italic;
       font-weight: 900;
+
       color: var(--blue);
-      line-height: 0.88;
-      letter-spacing: -0.045em;
+
+      line-height: .88;
+      letter-spacing: -.045em;
     }
+
+
+    /* =========================================
+       SUBSCRIBE BUTTON
+       ========================================= */
 
     .subscribe-wrap {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+
+      position: relative;
     }
 
     .subscribe {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+
       gap: 8px;
+
       padding: 12px 18px;
-      border: 1px solid var(--blue);
+
+      border:
+        1px solid var(--blue);
+
       border-radius: 999px;
+
       color: var(--blue);
       background: transparent;
-      text-decoration: none;
-      font-family: "FUSAB Bodoni", serif;
+
+      font-family:
+        "FUSAB Bodoni",
+        serif;
+
       font-size: 16px;
       font-weight: 700;
-      white-space: nowrap;
+
+      cursor: pointer;
+
       transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
     }
 
     .subscribe:hover,
     .subscribe:focus-visible {
       background: var(--blue);
       color: var(--bg);
-      transform: translateY(-1px);
+
+      transform:
+        translateY(-1px);
+
       outline: none;
     }
 
     .subscribe-note {
       margin: 9px 0 0;
+
       color: var(--muted);
+
       font-size: 14px;
       font-style: italic;
+
       text-align: right;
     }
 
+
+    /* =========================================
+       SUBSCRIBE MENU
+       ========================================= */
+
+    .subscribe-menu {
+      display: none;
+
+      position: absolute;
+
+      right: 0;
+      top: calc(100% + 14px);
+
+      width: 280px;
+
+      padding: 10px;
+
+      background: var(--bg);
+
+      border:
+        1px solid var(--blue);
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 12px 35px rgba(0,0,0,.12);
+
+      z-index: 100;
+    }
+
+    .subscribe-menu.open {
+      display: block;
+    }
+
+    .subscribe-menu-title {
+      margin: 5px 8px 9px;
+
+      font-family:
+        "FUSAB Matula",
+        serif;
+
+      color: var(--blue);
+
+      font-size: 21px;
+      font-style: italic;
+      font-weight: 900;
+    }
+
+    .calendar-option {
+      display: block;
+
+      width: 100%;
+
+      padding: 12px 13px;
+
+      border: 0;
+      border-radius: 10px;
+
+      background: transparent;
+
+      color: var(--text);
+
+      font-family:
+        "FUSAB Bodoni",
+        serif;
+
+      font-size: 16px;
+      text-align: left;
+      text-decoration: none;
+
+      cursor: pointer;
+    }
+
+    .calendar-option:hover,
+    .calendar-option:focus-visible {
+      background:
+        rgba(25, 47, 147, .08);
+
+      color: var(--blue);
+
+      outline: none;
+    }
+
+    .copy-message {
+      min-height: 18px;
+
+      margin: 5px 8px 3px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      font-style: italic;
+    }
+
+
+    /* =========================================
+       EVENTS
+       ========================================= */
+
     #status {
       padding: 32px 0;
+
       color: var(--muted);
+
       font-size: 17px;
     }
 
@@ -154,22 +318,38 @@
 
     .month-title {
       margin: 0;
+
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-      font-family: "FUSAB Matula", serif;
+
+      border-bottom:
+        1px solid var(--line);
+
+      font-family:
+        "FUSAB Matula",
+        serif;
+
       font-size: 27px;
       font-style: italic;
       font-weight: 900;
+
       color: var(--blue);
+
       line-height: 1;
     }
 
     .event {
       display: grid;
-      grid-template-columns: 90px minmax(0, 1fr);
+
+      grid-template-columns:
+        90px minmax(0, 1fr);
+
       gap: 28px;
+
       padding: 30px 0;
-      border-bottom: 1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+
       align-items: start;
     }
 
@@ -179,68 +359,105 @@
     }
 
     .day {
-      font-family: "FUSAB Bodoni", serif;
+      font-family:
+        "FUSAB Bodoni",
+        serif;
+
       font-size: 46px;
       font-weight: 700;
+
       color: var(--text);
-      line-height: 0.92;
-      letter-spacing: -0.035em;
+
+      line-height: .92;
+      letter-spacing: -.035em;
     }
 
     .weekday {
       margin-top: 8px;
+
       color: var(--muted);
-      font-family: "FUSAB Bodoni", serif;
+
+      font-family:
+        "FUSAB Bodoni",
+        serif;
+
       font-size: 14px;
       font-weight: 700;
+
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: .05em;
     }
 
     .event h2 {
       margin: 0 0 10px;
-      font-family: "FUSAB Matula", serif;
-      font-size: clamp(28px, 3.5vw, 42px);
+
+      font-family:
+        "FUSAB Matula",
+        serif;
+
+      font-size:
+        clamp(28px, 3.5vw, 42px);
+
       font-style: italic;
       font-weight: 900;
+
       color: var(--blue);
-      line-height: 0.95;
-      letter-spacing: -0.02em;
+
+      line-height: .95;
+      letter-spacing: -.02em;
     }
 
     .meta {
       display: flex;
       flex-wrap: wrap;
+
       gap: 7px 18px;
+
       margin: 0;
+
       color: var(--muted);
+
       font-size: 16px;
       line-height: 1.45;
     }
 
     .description {
       max-width: 720px;
+
       margin: 16px 0 0;
+
       color: var(--text);
+
       font-size: 18px;
       line-height: 1.58;
+
       white-space: pre-line;
     }
 
     .empty {
       padding: 60px 0;
+
       color: var(--muted);
+
       font-size: 20px;
     }
 
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+
     @media (max-width: 900px) {
+
       body {
-        padding: 24px 18px 40px;
+        padding:
+          24px 18px 40px;
       }
 
       .top {
         flex-direction: column;
         align-items: flex-start;
+
         gap: 22px;
       }
 
@@ -252,34 +469,43 @@
         text-align: left;
       }
 
+      .subscribe-menu {
+        left: 0;
+        right: auto;
+      }
+
       h1 {
-        font-size: clamp(46px, 10vw, 72px);
-        max-width: 650px;
+        font-size:
+          clamp(46px, 10vw, 72px);
       }
 
       .event {
-        grid-template-columns: 70px minmax(0, 1fr);
+        grid-template-columns:
+          70px minmax(0, 1fr);
+
         gap: 20px;
       }
+
     }
 
+
     @media (max-width: 600px) {
+
       body {
-        padding: 20px 14px 36px;
-      }
-
-      .eyebrow {
-        font-size: 14px;
-      }
-
-      h1 {
-        font-size: clamp(42px, 13vw, 64px);
-        line-height: 0.9;
+        padding:
+          20px 14px 36px;
       }
 
       .subscribe {
         width: 100%;
-        justify-content: center;
+      }
+
+      .subscribe-wrap {
+        width: 100%;
+      }
+
+      .subscribe-menu {
+        width: 100%;
       }
 
       .month {
@@ -291,8 +517,11 @@
       }
 
       .event {
-        grid-template-columns: 55px minmax(0, 1fr);
+        grid-template-columns:
+          55px minmax(0, 1fr);
+
         gap: 16px;
+
         padding: 24px 0;
       }
 
@@ -305,7 +534,8 @@
       }
 
       .event h2 {
-        font-size: clamp(27px, 8vw, 38px);
+        font-size:
+          clamp(27px, 8vw, 38px);
       }
 
       .meta {
@@ -315,24 +545,36 @@
       .description {
         font-size: 17px;
       }
+
     }
 
-    /* SQUARESPACE EMBED MODE */
+
+    /* =========================================
+       SQUARESPACE EMBED MODE
+       ========================================= */
 
     body.embed-mode {
-      padding: 0 14px 40px;
+      padding:
+        0 14px 40px;
     }
 
     body.embed-mode .top {
       display: flex;
+
       flex-direction: column;
+
       align-items: flex-start;
+
       gap: 18px;
+
       padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
     body.embed-mode .subscribe-wrap {
+      width: 100%;
       align-items: flex-start;
     }
 
@@ -340,8 +582,14 @@
       text-align: left;
     }
 
+    body.embed-mode .subscribe-menu {
+      left: 0;
+      right: auto;
+    }
+
     body.embed-mode h1 {
-      font-size: clamp(38px, 7vw, 56px);
+      font-size:
+        clamp(38px, 7vw, 56px);
     }
 
     body.embed-mode .eyebrow {
@@ -356,57 +604,61 @@
       margin-top: 28px;
     }
 
-    body.embed-mode #events > .month:first-child {
+    body.embed-mode #events
+    > .month:first-child {
       margin-top: 24px;
     }
 
     body.embed-mode .month-title {
       font-size: 25px;
-      line-height: 1;
+
       padding-bottom: 13px;
     }
 
     body.embed-mode .event {
-      grid-template-columns: 54px minmax(0, 1fr);
+      grid-template-columns:
+        54px minmax(0, 1fr);
+
       gap: 16px;
+
       padding: 24px 0;
     }
 
     body.embed-mode .day {
       font-size: 37px;
-      line-height: 0.9;
     }
 
     body.embed-mode .weekday {
       font-size: 12px;
-      margin-top: 7px;
     }
 
     body.embed-mode .event h2 {
-      font-size: clamp(25px, 5vw, 34px);
-      line-height: 0.95;
+      font-size:
+        clamp(25px, 5vw, 34px);
+
       margin-bottom: 8px;
     }
 
     body.embed-mode .meta {
       font-size: 15px;
-      line-height: 1.4;
     }
 
     body.embed-mode .description {
       font-size: 16px;
-      line-height: 1.5;
+
       margin-top: 12px;
     }
 
+
     @media (max-width: 500px) {
+
       body.embed-mode {
-        padding: 0 10px 32px;
+        padding:
+          0 10px 32px;
       }
 
       body.embed-mode .subscribe {
         width: 100%;
-        justify-content: center;
       }
 
       body.embed-mode .subscribe-note {
@@ -419,8 +671,11 @@
       }
 
       body.embed-mode .event {
-        grid-template-columns: 48px minmax(0, 1fr);
+        grid-template-columns:
+          48px minmax(0, 1fr);
+
         gap: 13px;
+
         padding: 21px 0;
       }
 
@@ -439,44 +694,112 @@
       body.embed-mode .description {
         font-size: 15px;
       }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
   <script>
     if (
-      new URLSearchParams(window.location.search).get("embed") === "1"
+      new URLSearchParams(
+        window.location.search
+      ).get("embed") === "1"
     ) {
-      document.body.classList.add("embed-mode");
+      document.body
+        .classList
+        .add("embed-mode");
     }
   </script>
+
 
   <main class="wrap">
 
     <header class="top">
 
       <div>
-        <p class="eyebrow">FUSAB CALENDAR</p>
-        <h1>Upcoming Events</h1>
+
+        <p class="eyebrow">
+          FUSAB CALENDAR
+        </p>
+
+        <h1>
+          Upcoming Events
+        </h1>
+
       </div>
 
+
       <div class="subscribe-wrap">
-        <a
+
+        <button
           class="subscribe"
-          href="webcal://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics"
-          aria-label="Subscribe to the FUSAB calendar"
+          id="subscribeButton"
+          type="button"
+          aria-expanded="false"
+          aria-controls="subscribeMenu"
         >
           Subscribe to Calendar ↗
-        </a>
+        </button>
+
 
         <p class="subscribe-note">
           Stays synced when events change.
         </p>
+
+
+        <div
+          class="subscribe-menu"
+          id="subscribeMenu"
+        >
+
+          <p class="subscribe-menu-title">
+            Choose your calendar
+          </p>
+
+
+          <a
+            class="calendar-option"
+            href="webcal://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics"
+            target="_top"
+          >
+            Apple / Default Calendar
+          </a>
+
+
+          <a
+            class="calendar-option"
+            href="https://calendar.google.com/calendar/r?cid=vppr.fusab%40gmail.com"
+            target="_blank"
+            rel="noopener"
+          >
+            Google Calendar
+          </a>
+
+
+          <button
+            class="calendar-option"
+            id="copyCalendar"
+            type="button"
+          >
+            Copy subscription link
+          </button>
+
+
+          <p
+            class="copy-message"
+            id="copyMessage"
+          ></p>
+
+        </div>
+
       </div>
 
     </header>
+
 
     <div
       id="status"
@@ -486,21 +809,156 @@
       Loading events…
     </div>
 
+
     <div id="events"></div>
 
   </main>
 
+
   <script>
+
+    /* =========================================
+       CALENDAR URLS
+       ========================================= */
+
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
 
+
+    const PUBLIC_ICAL_URL =
+      "https://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics";
+
+
+    /* =========================================
+       SUBSCRIBE MENU
+       ========================================= */
+
+    const subscribeButton =
+      document.getElementById(
+        "subscribeButton"
+      );
+
+
+    const subscribeMenu =
+      document.getElementById(
+        "subscribeMenu"
+      );
+
+
+    const copyCalendar =
+      document.getElementById(
+        "copyCalendar"
+      );
+
+
+    const copyMessage =
+      document.getElementById(
+        "copyMessage"
+      );
+
+
+    subscribeButton
+      .addEventListener(
+        "click",
+        () => {
+
+          const open =
+            subscribeMenu
+              .classList
+              .toggle("open");
+
+
+          subscribeButton
+            .setAttribute(
+              "aria-expanded",
+              open
+            );
+
+        }
+      );
+
+
+    document
+      .addEventListener(
+        "click",
+        event => {
+
+          if (
+            !subscribeMenu
+              .contains(event.target)
+            &&
+            !subscribeButton
+              .contains(event.target)
+          ) {
+
+            subscribeMenu
+              .classList
+              .remove("open");
+
+
+            subscribeButton
+              .setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+          }
+
+        }
+      );
+
+
+    copyCalendar
+      .addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await navigator
+              .clipboard
+              .writeText(
+                PUBLIC_ICAL_URL
+              );
+
+
+            copyMessage
+              .textContent =
+              "Subscription link copied!";
+
+          }
+
+          catch (error) {
+
+            window.prompt(
+              "Copy this calendar subscription link:",
+              PUBLIC_ICAL_URL
+            );
+
+          }
+
+        }
+      );
+
+
+    /* =========================================
+       EVENT DISPLAY
+       ========================================= */
+
     const eventsContainer =
-      document.getElementById("events");
+      document.getElementById(
+        "events"
+      );
+
 
     const status =
-      document.getElementById("status");
+      document.getElementById(
+        "status"
+      );
+
 
     function formatMonth(date) {
+
       return new Intl.DateTimeFormat(
         undefined,
         {
@@ -508,27 +966,36 @@
           year: "numeric"
         }
       ).format(date);
+
     }
 
+
     function formatDay(date) {
+
       return new Intl.DateTimeFormat(
         undefined,
         {
           day: "numeric"
         }
       ).format(date);
+
     }
 
+
     function formatWeekday(date) {
+
       return new Intl.DateTimeFormat(
         undefined,
         {
           weekday: "short"
         }
       ).format(date);
+
     }
 
+
     function formatTime(date) {
+
       return new Intl.DateTimeFormat(
         undefined,
         {
@@ -536,36 +1003,53 @@
           minute: "2-digit"
         }
       ).format(date);
+
     }
 
+
     function escapeHTML(value = "") {
+
       const div =
         document.createElement("div");
 
-      div.textContent = value;
+
+      div.textContent =
+        value;
+
 
       return div.innerHTML;
+
     }
 
+
     function createEvent(event) {
+
       const start =
         new Date(event.start);
+
 
       const end =
         new Date(event.end);
 
+
       const article =
-        document.createElement("article");
+        document.createElement(
+          "article"
+        );
+
 
       article.className =
         "event";
+
 
       const timeText =
         event.allDay
           ? "All day"
           : `${formatTime(start)} – ${formatTime(end)}`;
 
+
       article.innerHTML = `
+
         <div class="date">
 
           <span class="day">
@@ -578,11 +1062,13 @@
 
         </div>
 
+
         <div>
 
           <h2>
             ${escapeHTML(event.title)}
           </h2>
+
 
           <p class="meta">
 
@@ -590,49 +1076,63 @@
               ${escapeHTML(timeText)}
             </span>
 
+
             ${
               event.location
                 ? `
-                  <span>
-                    ${escapeHTML(event.location)}
-                  </span>
-                `
+                    <span>
+                      ${escapeHTML(event.location)}
+                    </span>
+                  `
                 : ""
             }
 
           </p>
 
+
           ${
             event.description
               ? `
-                <p class="description">
-                  ${escapeHTML(event.description)}
-                </p>
-              `
+                  <p class="description">
+                    ${escapeHTML(event.description)}
+                  </p>
+                `
               : ""
           }
 
         </div>
+
       `;
 
+
       return article;
+
     }
 
+
     function renderEvents(events) {
+
       status.style.display =
         "none";
 
+
       if (!Array.isArray(events)) {
+
         status.style.display =
           "block";
+
 
         status.textContent =
           "The calendar returned an unexpected response.";
 
+
         return;
+
       }
 
+
       if (!events.length) {
+
         eventsContainer.innerHTML =
           `
             <div class="empty">
@@ -640,94 +1140,151 @@
             </div>
           `;
 
+
         return;
+
       }
+
 
       events.sort(
         (a, b) =>
-          new Date(a.start) -
+          new Date(a.start)
+          -
           new Date(b.start)
       );
+
 
       let currentMonth =
         "";
 
+
       let currentSection =
         null;
 
-      events.forEach(event => {
-        const date =
-          new Date(event.start);
 
-        const month =
-          formatMonth(date);
+      events.forEach(
+        event => {
 
-        if (month !== currentMonth) {
-          currentMonth =
-            month;
+          const date =
+            new Date(
+              event.start
+            );
 
-          currentSection =
-            document.createElement("section");
 
-          currentSection.className =
-            "month";
+          const month =
+            formatMonth(date);
 
-          const title =
-            document.createElement("h2");
 
-          title.className =
-            "month-title";
+          if (
+            month !== currentMonth
+          ) {
 
-          title.textContent =
-            month;
+            currentMonth =
+              month;
 
-          currentSection.appendChild(
-            title
-          );
 
-          eventsContainer.appendChild(
+            currentSection =
+              document.createElement(
+                "section"
+              );
+
+
+            currentSection.className =
+              "month";
+
+
+            const title =
+              document.createElement(
+                "h2"
+              );
+
+
+            title.className =
+              "month-title";
+
+
+            title.textContent =
+              month;
+
+
             currentSection
-          );
-        }
+              .appendChild(title);
 
-        currentSection.appendChild(
-          createEvent(event)
-        );
-      });
+
+            eventsContainer
+              .appendChild(
+                currentSection
+              );
+
+          }
+
+
+          currentSection
+            .appendChild(
+              createEvent(event)
+            );
+
+        }
+      );
+
     }
 
+
     fetch(
-      SCRIPT_URL + "?action=events"
+      SCRIPT_URL +
+      "?action=events"
     )
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(
-            "Calendar request failed."
-          );
+
+      .then(
+        response => {
+
+          if (!response.ok) {
+
+            throw new Error(
+              "Calendar request failed."
+            );
+
+          }
+
+
+          return response.json();
+
         }
+      )
 
-        return response.json();
-      })
 
-      .then(data => {
-        if (
-          data &&
-          data.error
-        ) {
-          throw new Error(
+      .then(
+        data => {
+
+          if (
+            data &&
             data.error
-          );
+          ) {
+
+            throw new Error(
+              data.error
+            );
+
+          }
+
+
+          renderEvents(data);
+
         }
+      )
 
-        renderEvents(data);
-      })
 
-      .catch(error => {
-        console.error(error);
+      .catch(
+        error => {
 
-        status.textContent =
-          "Events are temporarily unavailable. Please check back soon.";
-      });
+          console.error(error);
+
+
+          status.textContent =
+            "Events are temporarily unavailable. Please check back soon.";
+
+        }
+      );
 
   </script>
 
