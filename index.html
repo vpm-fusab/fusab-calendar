@@ -2,258 +2,364 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FUSAB Events</title>
 
   <style>
-    @font-face{
-      font-family:"FUSAB Matula";
-      src:url("./BFMatulaW00-BlackItalic.woff2") format("woff2");
-      font-style:italic;
-      font-weight:900;
-      font-display:swap;
+    @font-face {
+      font-family: "FUSAB Matula";
+      src: url("./BFMatulaW00-BlackItalic.woff2") format("woff2");
+      font-style: italic;
+      font-weight: 900;
+      font-display: swap;
     }
 
-    @font-face{
-      font-family:"FUSAB Bodoni";
-      src:url("./BodoniSvtyTwoITCTT-Book.woff2") format("woff2");
-      font-style:normal;
-      font-weight:400;
-      font-display:swap;
+    @font-face {
+      font-family: "FUSAB Bodoni";
+      src: url("./BodoniSvtyTwoITCTT-Book.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
     }
 
-    @font-face{
-      font-family:"FUSAB Bodoni";
-      src:url("./BodoniSvtyTwoITCTT-Bold.woff2") format("woff2");
-      font-style:normal;
-      font-weight:700;
-      font-display:swap;
+    @font-face {
+      font-family: "FUSAB Bodoni";
+      src: url("./BodoniSvtyTwoITCTT-Bold.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
     }
 
-    @font-face{
-      font-family:"FUSAB Bodoni";
-      src:url("./BodoniSvtyTwoITCTT-BookIta.woff2") format("woff2");
-      font-style:italic;
-      font-weight:400;
-      font-display:swap;
+    @font-face {
+      font-family: "FUSAB Bodoni";
+      src: url("./BodoniSvtyTwoITCTT-BookIta.woff2") format("woff2");
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
     }
 
-    :root{
-      --bg:#ffffff;
-      --text:#111111;
-      --muted:#6e6e73;
-      --line:rgba(0,0,0,.12);
-      --max:1100px;
+    :root {
+      --bg: #F5F5F5;
+      --text: #000000;
+      --blue: #192F93;
+      --muted: #3D3D3D;
+      --line: rgba(0, 0, 0, .14);
+      --max: 1100px;
     }
 
-    *{box-sizing:border-box}
-
-    html,body{
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:"FUSAB Bodoni", "Bodoni 72", Didot, serif;
+    * {
+      box-sizing: border-box;
     }
 
-    body{padding:28px 20px 48px}
-
-    .wrap{
-      width:100%;
-      max-width:var(--max);
-      margin:0 auto;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    .top{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:24px;
-      padding-bottom:24px;
-      border-bottom:1px solid var(--line);
+    body {
+      padding: 32px 22px 52px;
+      font-family: "FUSAB Bodoni", "Bodoni 72", Didot, serif;
+      font-size: 18px;
     }
 
-    .eyebrow{
-      font-family:"FUSAB Matula", "Arial Black", sans-serif;
-      font-style:italic;
-      font-weight:900;
-      margin:0 0 8px;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-weight:700;
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
     }
 
-    h1{
-      font-family:"FUSAB Matula", "Arial Black", sans-serif;
-      font-style:italic;
-      font-weight:900;
-      margin:0;
-      font-size:clamp(34px,6vw,64px);
-      line-height:.95;
-      letter-spacing:-.04em;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .subscribe{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:12px 18px;
-      border:1px solid currentColor;
-      border-radius:999px;
-      color:inherit;
-      text-decoration:none;
-      font-size:14px;
-      font-weight:700;
-      white-space:nowrap;
-      transition:.2s ease;
+    .eyebrow {
+      margin: 0 0 8px;
+
+      font-family: "FUSAB Matula", serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 900;
+
+      color: var(--blue);
+    }
+
+    h1 {
+      margin: 0;
+
+      font-family: "FUSAB Matula", serif;
+      font-size: clamp(48px, 7vw, 82px);
+      font-style: italic;
+      font-weight: 900;
+
+      color: var(--blue);
+
+      line-height: .88;
+      letter-spacing: -.045em;
+    }
+
+    .subscribe-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .subscribe {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 12px 18px;
+
+      border: 1px solid var(--blue);
+      border-radius: 999px;
+
+      color: var(--blue);
+      background: transparent;
+
+      text-decoration: none;
+
+      font-family: "FUSAB Bodoni", serif;
+      font-size: 16px;
+      font-weight: 700;
+
+      white-space: nowrap;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
     }
 
     .subscribe:hover,
-    .subscribe:focus-visible{
-      background:#111;
-      color:#fff;
-      outline:none;
+    .subscribe:focus-visible {
+      background: var(--blue);
+      color: var(--bg);
+
+      transform: translateY(-1px);
+
+      outline: none;
     }
 
-    .subscribe-note{
-      margin:10px 0 0;
-      color:var(--muted);
-      font-size:12px;
-      text-align:right;
+    .subscribe-note {
+      margin: 9px 0 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      font-style: italic;
+
+      text-align: right;
     }
 
-    #status{
-      padding:30px 0;
-      color:var(--muted);
-      font-size:15px;
+    #status {
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 17px;
     }
 
-    .month{margin-top:42px}
-
-    .month-title{
-      font-family:"FUSAB Matula", "Arial Black", sans-serif;
-      font-style:italic;
-      font-weight:900;
-      margin:0;
-      padding-bottom:10px;
-      border-bottom:1px solid var(--line);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:14px;
+    .month {
+      margin-top: 46px;
     }
 
-    .event{
-      display:grid;
-      grid-template-columns:84px minmax(0,1fr) auto;
-      gap:26px;
-      padding:26px 0;
-      border-bottom:1px solid var(--line);
-      align-items:start;
+    .month-title {
+      margin: 0;
+      padding-bottom: 12px;
+
+      border-bottom: 1px solid var(--line);
+
+      font-family: "FUSAB Matula", serif;
+      font-size: 27px;
+      font-style: italic;
+      font-weight: 900;
+
+      color: var(--blue);
+
+      line-height: 1;
     }
 
-    .date{display:flex;flex-direction:column}
+    .event {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr) auto;
+      gap: 28px;
 
-    .day{
-      font-size:40px;
-      line-height:.95;
-      letter-spacing:-.04em;
-      font-weight:700;
+      padding: 30px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      align-items: start;
     }
 
-    .weekday{
-      margin-top:8px;
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:var(--muted);
-      font-weight:700;
+    .date {
+      display: flex;
+      flex-direction: column;
     }
 
-    .event h2{
-      font-family:"FUSAB Matula", "Arial Black", sans-serif;
-      font-style:italic;
-      font-weight:900;
-      margin:0 0 8px;
-      font-size:clamp(21px,3vw,29px);
-      line-height:1.15;
-      letter-spacing:-.02em;
+    .day {
+      font-family: "FUSAB Bodoni", serif;
+      font-size: 46px;
+      font-weight: 700;
+
+      color: var(--text);
+
+      line-height: .92;
+      letter-spacing: -.035em;
     }
 
-    .meta{
-      margin:0;
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px 16px;
-      color:var(--muted);
-      font-size:14px;
+    .weekday {
+      margin-top: 8px;
+
+      color: var(--muted);
+
+      font-family: "FUSAB Bodoni", serif;
+      font-size: 14px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+      letter-spacing: .05em;
     }
 
-    .description{
-      max-width:720px;
-      margin:14px 0 0;
-      font-size:15px;
-      line-height:1.6;
-      color:#333;
-      white-space:pre-line;
+    .event h2 {
+      margin: 0 0 10px;
+
+      font-family: "FUSAB Matula", serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-style: italic;
+      font-weight: 900;
+
+      color: var(--blue);
+
+      line-height: .95;
+      letter-spacing: -.02em;
     }
 
-    .add{
-      align-self:center;
-      display:inline-flex;
-      align-items:center;
-      padding:10px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:inherit;
-      text-decoration:none;
-      font-size:13px;
-      font-weight:700;
-      white-space:nowrap;
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 18px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 16px;
+      line-height: 1.45;
     }
 
-    .add:hover,.add:focus-visible{border-color:#111;outline:none}
+    .description {
+      max-width: 720px;
 
-    .empty{
-      padding:56px 0;
-      color:var(--muted);
-      font-size:18px;
+      margin: 16px 0 0;
+
+      color: var(--text);
+
+      font-size: 18px;
+      line-height: 1.58;
+
+      white-space: pre-line;
     }
 
-    @media (max-width:720px){
-      body{padding:22px 16px 40px}
+    .add {
+      align-self: center;
 
-      .top{
-        align-items:flex-start;
-        flex-direction:column;
+      display: inline-flex;
+      align-items: center;
+
+      padding: 10px 15px;
+
+      border: 1px solid var(--blue);
+      border-radius: 999px;
+
+      color: var(--blue);
+      background: transparent;
+
+      text-decoration: none;
+
+      font-family: "FUSAB Bodoni", serif;
+      font-size: 15px;
+      font-weight: 700;
+
+      white-space: nowrap;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .add:hover,
+    .add:focus-visible {
+      background: var(--blue);
+      color: var(--bg);
+
+      transform: translateY(-1px);
+
+      outline: none;
+    }
+
+    .empty {
+      padding: 60px 0;
+
+      color: var(--muted);
+
+      font-size: 20px;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 24px 16px 42px;
       }
 
-      .subscribe-note{text-align:left}
-
-      .event{
-        grid-template-columns:62px 1fr;
-        gap:18px;
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .day{font-size:32px}
+      .subscribe-wrap {
+        align-items: flex-start;
+      }
 
-      .add{
-        grid-column:2;
-        justify-self:start;
+      .subscribe-note {
+        text-align: left;
+      }
+
+      .event {
+        grid-template-columns: 64px 1fr;
+        gap: 18px;
+      }
+
+      .day {
+        font-size: 38px;
+      }
+
+      .add {
+        grid-column: 2;
+        justify-self: start;
       }
     }
   </style>
 </head>
 
 <body>
+
   <main class="wrap">
+
     <header class="top">
+
       <div>
         <p class="eyebrow">FUSAB CALENDAR</p>
         <h1>Upcoming Events</h1>
       </div>
 
-      <div>
+      <div class="subscribe-wrap">
+
         <a
           class="subscribe"
           href="webcal://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics"
@@ -261,62 +367,108 @@
         >
           Subscribe to Calendar ↗
         </a>
-        <p class="subscribe-note">Stays synced when events change.</p>
+
+        <p class="subscribe-note">
+          Stays synced when events change.
+        </p>
+
       </div>
+
     </header>
 
-    <div id="status" role="status" aria-live="polite">Loading events…</div>
+    <div
+      id="status"
+      role="status"
+      aria-live="polite"
+    >
+      Loading events…
+    </div>
+
     <div id="events"></div>
+
   </main>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
 
-    const eventsContainer = document.getElementById("events");
-    const status = document.getElementById("status");
+    const eventsContainer =
+      document.getElementById("events");
 
-    function formatMonth(date){
-      return new Intl.DateTimeFormat(undefined,{
-        month:"long", year:"numeric"
-      }).format(date);
+    const status =
+      document.getElementById("status");
+
+
+    function formatMonth(date) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          month: "long",
+          year: "numeric"
+        }
+      ).format(date);
     }
 
-    function formatDay(date){
-      return new Intl.DateTimeFormat(undefined,{day:"numeric"}).format(date);
+
+    function formatDay(date) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          day: "numeric"
+        }
+      ).format(date);
     }
 
-    function formatWeekday(date){
-      return new Intl.DateTimeFormat(undefined,{weekday:"short"}).format(date);
+
+    function formatWeekday(date) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          weekday: "short"
+        }
+      ).format(date);
     }
 
-    function formatTime(date){
-      return new Intl.DateTimeFormat(undefined,{
-        hour:"numeric", minute:"2-digit"
-      }).format(date);
+
+    function formatTime(date) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      ).format(date);
     }
 
-    function escapeHTML(value=""){
-      const div=document.createElement("div");
-      div.textContent=value;
+
+    function escapeHTML(value = "") {
+      const div =
+        document.createElement("div");
+
+      div.textContent = value;
+
       return div.innerHTML;
     }
 
-    function icsDate(value){
+
+    function icsDate(value) {
       return new Date(value)
         .toISOString()
-        .replace(/[-:]/g,"")
-        .replace(/\.\d{3}/,"");
+        .replace(/[-:]/g, "")
+        .replace(/\.\d{3}/, "");
     }
 
-    function cleanICS(value=""){
+
+    function cleanICS(value = "") {
       return String(value)
-        .replace(/\\/g,"\\\\")
-        .replace(/\n/g,"\\n")
-        .replace(/,/g,"\\,")
-        .replace(/;/g,"\\;");
+        .replace(/\\/g, "\\\\")
+        .replace(/\n/g, "\\n")
+        .replace(/,/g, "\\,")
+        .replace(/;/g, "\\;");
     }
 
-    function makeSingleEventICS(event){
+
+    function makeSingleEventICS(event) {
       const lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
@@ -327,116 +479,257 @@
         "DTSTART:" + icsDate(event.start),
         "DTEND:" + icsDate(event.end),
         "SUMMARY:" + cleanICS(event.title),
-        event.location ? "LOCATION:" + cleanICS(event.location) : "",
-        event.description ? "DESCRIPTION:" + cleanICS(event.description) : "",
+
+        event.location
+          ? "LOCATION:" + cleanICS(event.location)
+          : "",
+
+        event.description
+          ? "DESCRIPTION:" + cleanICS(event.description)
+          : "",
+
         "END:VEVENT",
         "END:VCALENDAR"
       ].filter(Boolean);
 
-      const blob = new Blob([lines.join("\r\n")], {
-        type:"text/calendar;charset=utf-8"
-      });
+
+      const blob =
+        new Blob(
+          [lines.join("\r\n")],
+          {
+            type: "text/calendar;charset=utf-8"
+          }
+        );
+
 
       return URL.createObjectURL(blob);
     }
 
-    function createEvent(event){
-      const start = new Date(event.start);
-      const end = new Date(event.end);
 
-      const article = document.createElement("article");
-      article.className = "event";
+    function createEvent(event) {
+      const start =
+        new Date(event.start);
 
-      const timeText = event.allDay
-        ? "All day"
-        : `${formatTime(start)} – ${formatTime(end)}`;
+      const end =
+        new Date(event.end);
+
+
+      const article =
+        document.createElement("article");
+
+      article.className =
+        "event";
+
+
+      const timeText =
+        event.allDay
+          ? "All day"
+          : `${formatTime(start)} – ${formatTime(end)}`;
+
 
       article.innerHTML = `
         <div class="date">
-          <span class="day">${formatDay(start)}</span>
-          <span class="weekday">${formatWeekday(start)}</span>
+
+          <span class="day">
+            ${formatDay(start)}
+          </span>
+
+          <span class="weekday">
+            ${formatWeekday(start)}
+          </span>
+
         </div>
 
         <div>
-          <h2>${escapeHTML(event.title)}</h2>
+
+          <h2>
+            ${escapeHTML(event.title)}
+          </h2>
 
           <p class="meta">
-            <span>${escapeHTML(timeText)}</span>
-            ${event.location ? `<span>${escapeHTML(event.location)}</span>` : ""}
+
+            <span>
+              ${escapeHTML(timeText)}
+            </span>
+
+            ${
+              event.location
+                ? `
+                  <span>
+                    ${escapeHTML(event.location)}
+                  </span>
+                `
+                : ""
+            }
+
           </p>
 
-          ${event.description
-            ? `<p class="description">${escapeHTML(event.description)}</p>`
-            : ""
+          ${
+            event.description
+              ? `
+                <p class="description">
+                  ${escapeHTML(event.description)}
+                </p>
+              `
+              : ""
           }
+
         </div>
       `;
 
-      const add = document.createElement("a");
-      add.className = "add";
-      add.textContent = "Add this event";
-      add.href = makeSingleEventICS(event);
-      add.download = `${(event.title || "event").replace(/[\\/:*?"<>|]/g,"-")}.ics`;
-      add.setAttribute("aria-label", `Download ${event.title} as a calendar event`);
+
+      const add =
+        document.createElement("a");
+
+      add.className =
+        "add";
+
+      add.textContent =
+        "Add this event";
+
+      add.href =
+        makeSingleEventICS(event);
+
+      add.download =
+        `${(event.title || "event")
+          .replace(/[\\/:*?"<>|]/g, "-")}.ics`;
+
+      add.setAttribute(
+        "aria-label",
+        `Download ${event.title} as a calendar event`
+      );
+
 
       article.appendChild(add);
+
       return article;
     }
 
-    function renderEvents(events){
-      status.style.display = "none";
 
-      if(!Array.isArray(events)){
-        status.style.display = "block";
-        status.textContent = "The calendar returned an unexpected response.";
+    function renderEvents(events) {
+      status.style.display =
+        "none";
+
+
+      if (!Array.isArray(events)) {
+        status.style.display =
+          "block";
+
+        status.textContent =
+          "The calendar returned an unexpected response.";
+
         return;
       }
 
-      if(!events.length){
-        eventsContainer.innerHTML = `<div class="empty">No upcoming events.</div>`;
+
+      if (!events.length) {
+        eventsContainer.innerHTML =
+          `
+            <div class="empty">
+              No upcoming events.
+            </div>
+          `;
+
         return;
       }
 
-      events.sort((a,b)=>new Date(a.start)-new Date(b.start));
 
-      let currentMonth = "";
-      let currentSection = null;
+      events.sort(
+        (a, b) =>
+          new Date(a.start) -
+          new Date(b.start)
+      );
 
-      events.forEach(event=>{
-        const date = new Date(event.start);
-        const month = formatMonth(date);
 
-        if(month !== currentMonth){
-          currentMonth = month;
-          currentSection = document.createElement("section");
-          currentSection.className = "month";
+      let currentMonth =
+        "";
 
-          const title = document.createElement("h2");
-          title.className = "month-title";
-          title.textContent = month;
+      let currentSection =
+        null;
 
-          currentSection.appendChild(title);
-          eventsContainer.appendChild(currentSection);
+
+      events.forEach(event => {
+        const date =
+          new Date(event.start);
+
+        const month =
+          formatMonth(date);
+
+
+        if (month !== currentMonth) {
+          currentMonth =
+            month;
+
+
+          currentSection =
+            document.createElement("section");
+
+          currentSection.className =
+            "month";
+
+
+          const title =
+            document.createElement("h2");
+
+          title.className =
+            "month-title";
+
+          title.textContent =
+            month;
+
+
+          currentSection.appendChild(
+            title
+          );
+
+          eventsContainer.appendChild(
+            currentSection
+          );
         }
 
-        currentSection.appendChild(createEvent(event));
+
+        currentSection.appendChild(
+          createEvent(event)
+        );
       });
     }
 
-    fetch(SCRIPT_URL + "?action=events")
-      .then(response=>{
-        if(!response.ok) throw new Error("Calendar request failed.");
+
+    fetch(
+      SCRIPT_URL + "?action=events"
+    )
+
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(
+            "Calendar request failed."
+          );
+        }
+
         return response.json();
       })
-      .then(data=>{
-        if(data && data.error) throw new Error(data.error);
+
+      .then(data => {
+        if (
+          data &&
+          data.error
+        ) {
+          throw new Error(
+            data.error
+          );
+        }
+
         renderEvents(data);
       })
-      .catch(error=>{
+
+      .catch(error => {
         console.error(error);
+
         status.textContent =
           "Events are temporarily unavailable. Please check back soon.";
       });
+
   </script>
+
 </body>
 </html>
