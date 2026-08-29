@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FUSAB Events</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#6e6e73;
+      --line:rgba(0,0,0,.12);
+      --pill:#f4f4f5;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      padding:28px 20px 48px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .top{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+      padding-bottom:24px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .eyebrow{
+      margin:0 0 8px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(34px,6vw,64px);
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .download{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 18px;
+      border:1px solid currentColor;
+      border-radius:999px;
+      color:inherit;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:700;
+      white-space:nowrap;
+      transition:.2s ease;
+    }
+
+    .download:hover,
+    .download:focus-visible{
+      background:#111;
+      color:#fff;
+      outline:none;
+    }
+
+    #status{
+      padding:30px 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .month{
+      margin-top:42px;
+    }
+
+    .month-title{
+      margin:0;
+      padding-bottom:10px;
+      border-bottom:1px solid var(--line);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:14px;
+    }
+
+    .event{
+      display:grid;
+      grid-template-columns:84px minmax(0,1fr) auto;
+      gap:26px;
+      padding:26px 0;
+      border-bottom:1px solid var(--line);
+      align-items:start;
+    }
+
+    .date{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .day{
+      font-size:40px;
+      line-height:.95;
+      letter-spacing:-.04em;
+      font-weight:700;
+    }
+
+    .weekday{
+      margin-top:8px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .event h2{
+      margin:0 0 8px;
+      font-size:clamp(21px,3vw,29px);
+      line-height:1.15;
+      letter-spacing:-.02em;
+    }
+
+    .meta{
+      margin:0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px 16px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .description{
+      max-width:720px;
+      margin:14px 0 0;
+      font-size:15px;
+      line-height:1.6;
+      color:#333;
+      white-space:pre-line;
+    }
+
+    .add{
+      align-self:center;
+      display:inline-flex;
+      align-items:center;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:inherit;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .add:hover,
+    .add:focus-visible{
+      border-color:#111;
+      outline:none;
+    }
+
+    .empty{
+      padding:56px 0;
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    @media (max-width:720px){
+      body{padding:22px 16px 40px}
+
+      .top{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .event{
+        grid-template-columns:62px 1fr;
+        gap:18px;
+      }
+
+      .day{font-size:32px}
+
+      .add{
+        grid-column:2;
+        justify-self:start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <p class="eyebrow">FUSAB CALENDAR</p>
+        <h1>Upcoming Events</h1>
+      </div>
+
+      <a
+        id="downloadCalendar"
+        class="download"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        aria-label="Download the full FUSAB calendar"
+      >
+        Download Calendar ↓
+      </a>
+    </header>
+
+    <div id="status" role="status" aria-live="polite">Loading events…</div>
+    <div id="events"></div>
+  </main>
+
+  <script>
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
+
+    const eventsContainer = document.getElementById("events");
+    const status = document.getElementById("status");
+    const downloadButton = document.getElementById("downloadCalendar");
+
+    downloadButton.href = SCRIPT_URL + "?action=ical";
+
+    function formatMonth(date){
+      return new Intl.DateTimeFormat(undefined,{
+        month:"long",
+        year:"numeric"
+      }).format(date);
+    }
+
+    function formatDay(date){
+      return new Intl.DateTimeFormat(undefined,{
+        day:"numeric"
+      }).format(date);
+    }
+
+    function formatWeekday(date){
+      return new Intl.DateTimeFormat(undefined,{
+        weekday:"short"
+      }).format(date);
+    }
+
+    function formatTime(date){
+      return new Intl.DateTimeFormat(undefined,{
+        hour:"numeric",
+        minute:"2-digit"
+      }).format(date);
+    }
+
+    function escapeHTML(value=""){
+      const div=document.createElement("div");
+      div.textContent=value;
+      return div.innerHTML;
+    }
+
+    function icsDate(value){
+      return new Date(value)
+        .toISOString()
+        .replace(/[-:]/g,"")
+        .replace(/\.\d{3}/,"");
+    }
+
+    function cleanICS(value=""){
+      return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/\n/g,"\\n")
+        .replace(/,/g,"\\,")
+        .replace(/;/g,"\\;");
+    }
+
+    function makeSingleEventICS(event){
+      const lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//FUSAB//Events//EN",
+        "CALSCALE:GREGORIAN",
+        "BEGIN:VEVENT",
+        "DTSTAMP:" + icsDate(new Date()),
+        "DTSTART:" + icsDate(event.start),
+        "DTEND:" + icsDate(event.end),
+        "SUMMARY:" + cleanICS(event.title),
+        event.location ? "LOCATION:" + cleanICS(event.location) : "",
+        event.description ? "DESCRIPTION:" + cleanICS(event.description) : "",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].filter(Boolean);
+
+      const blob = new Blob([lines.join("\r\n")], {
+        type:"text/calendar;charset=utf-8"
+      });
+
+      return URL.createObjectURL(blob);
+    }
+
+    function createEvent(event){
+      const start = new Date(event.start);
+      const end = new Date(event.end);
+
+      const article = document.createElement("article");
+      article.className = "event";
+
+      const timeText = event.allDay
+        ? "All day"
+        : `${formatTime(start)} – ${formatTime(end)}`;
+
+      article.innerHTML = `
+        <div class="date">
+          <span class="day">${formatDay(start)}</span>
+          <span class="weekday">${formatWeekday(start)}</span>
+        </div>
+
+        <div>
+          <h2>${escapeHTML(event.title)}</h2>
+
+          <p class="meta">
+            <span>${escapeHTML(timeText)}</span>
+            ${event.location ? `<span>${escapeHTML(event.location)}</span>` : ""}
+          </p>
+
+          ${event.description
+            ? `<p class="description">${escapeHTML(event.description)}</p>`
+            : ""
+          }
+        </div>
+      `;
+
+      const add = document.createElement("a");
+      add.className = "add";
+      add.textContent = "Add to calendar";
+      add.href = makeSingleEventICS(event);
+      add.download = `${(event.title || "event").replace(/[\\/:*?"<>|]/g,"-")}.ics`;
+      add.setAttribute("aria-label", `Download ${event.title} as a calendar event`);
+
+      article.appendChild(add);
+      return article;
+    }
+
+    function renderEvents(events){
+      status.style.display = "none";
+
+      if(!Array.isArray(events)){
+        status.style.display = "block";
+        status.textContent = "The calendar returned an unexpected response.";
+        return;
+      }
+
+      if(!events.length){
+        eventsContainer.innerHTML = `<div class="empty">No upcoming events.</div>`;
+        return;
+      }
+
+      events.sort((a,b)=>new Date(a.start)-new Date(b.start));
+
+      let currentMonth = "";
+      let currentSection = null;
+
+      events.forEach(event=>{
+        const date = new Date(event.start);
+        const month = formatMonth(date);
+
+        if(month !== currentMonth){
+          currentMonth = month;
+
+          currentSection = document.createElement("section");
+          currentSection.className = "month";
+
+          const title = document.createElement("h2");
+          title.className = "month-title";
+          title.textContent = month;
+
+          currentSection.appendChild(title);
+          eventsContainer.appendChild(currentSection);
+        }
+
+        currentSection.appendChild(createEvent(event));
+      });
+    }
+
+    fetch(SCRIPT_URL + "?action=events")
+      .then(response=>{
+        if(!response.ok) throw new Error("Calendar request failed.");
+        return response.json();
+      })
+      .then(data=>{
+        if(data && data.error) throw new Error(data.error);
+        renderEvents(data);
+      })
+      .catch(error=>{
+        console.error(error);
+        status.textContent =
+          "Events are temporarily unavailable. Please check back soon.";
+      });
+  </script>
+</body>
+</html>
