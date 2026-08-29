@@ -11,7 +11,6 @@
       --text:#111111;
       --muted:#6e6e73;
       --line:rgba(0,0,0,.12);
-      --pill:#f4f4f5;
       --max:1100px;
     }
 
@@ -25,9 +24,7 @@
       font-family:Arial, Helvetica, sans-serif;
     }
 
-    body{
-      padding:28px 20px 48px;
-    }
+    body{padding:28px 20px 48px}
 
     .wrap{
       width:100%;
@@ -59,7 +56,7 @@
       letter-spacing:-.04em;
     }
 
-    .download{
+    .subscribe{
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -74,11 +71,18 @@
       transition:.2s ease;
     }
 
-    .download:hover,
-    .download:focus-visible{
+    .subscribe:hover,
+    .subscribe:focus-visible{
       background:#111;
       color:#fff;
       outline:none;
+    }
+
+    .subscribe-note{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      text-align:right;
     }
 
     #status{
@@ -87,9 +91,7 @@
       font-size:15px;
     }
 
-    .month{
-      margin-top:42px;
-    }
+    .month{margin-top:42px}
 
     .month-title{
       margin:0;
@@ -109,10 +111,7 @@
       align-items:start;
     }
 
-    .date{
-      display:flex;
-      flex-direction:column;
-    }
+    .date{display:flex;flex-direction:column}
 
     .day{
       font-size:40px;
@@ -169,11 +168,7 @@
       white-space:nowrap;
     }
 
-    .add:hover,
-    .add:focus-visible{
-      border-color:#111;
-      outline:none;
-    }
+    .add:hover,.add:focus-visible{border-color:#111;outline:none}
 
     .empty{
       padding:56px 0;
@@ -188,6 +183,8 @@
         align-items:flex-start;
         flex-direction:column;
       }
+
+      .subscribe-note{text-align:left}
 
       .event{
         grid-template-columns:62px 1fr;
@@ -212,16 +209,16 @@
         <h1>Upcoming Events</h1>
       </div>
 
-      <a
-        id="downloadCalendar"
-        class="download"
-        href="#"
-        target="_blank"
-        rel="noopener"
-        aria-label="Download the full FUSAB calendar"
-      >
-        Download Calendar ↓
-      </a>
+      <div>
+        <a
+          class="subscribe"
+          href="webcal://calendar.google.com/calendar/ical/vppr.fusab%40gmail.com/public/basic.ics"
+          aria-label="Subscribe to the FUSAB calendar"
+        >
+          Subscribe to Calendar ↗
+        </a>
+        <p class="subscribe-note">Stays synced when events change.</p>
+      </div>
     </header>
 
     <div id="status" role="status" aria-live="polite">Loading events…</div>
@@ -229,38 +226,28 @@
   </main>
 
   <script>
-    const SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeE1suq4_9ieJXljWhlZ3P-0i6OaISIRG7LCsiTbcX-qaEHX7rgR6LdAcIAE3ayVXgNA/exec";
 
     const eventsContainer = document.getElementById("events");
     const status = document.getElementById("status");
-    const downloadButton = document.getElementById("downloadCalendar");
-
-    downloadButton.href = SCRIPT_URL + "?action=ical";
 
     function formatMonth(date){
       return new Intl.DateTimeFormat(undefined,{
-        month:"long",
-        year:"numeric"
+        month:"long", year:"numeric"
       }).format(date);
     }
 
     function formatDay(date){
-      return new Intl.DateTimeFormat(undefined,{
-        day:"numeric"
-      }).format(date);
+      return new Intl.DateTimeFormat(undefined,{day:"numeric"}).format(date);
     }
 
     function formatWeekday(date){
-      return new Intl.DateTimeFormat(undefined,{
-        weekday:"short"
-      }).format(date);
+      return new Intl.DateTimeFormat(undefined,{weekday:"short"}).format(date);
     }
 
     function formatTime(date){
       return new Intl.DateTimeFormat(undefined,{
-        hour:"numeric",
-        minute:"2-digit"
+        hour:"numeric", minute:"2-digit"
       }).format(date);
     }
 
@@ -343,7 +330,7 @@
 
       const add = document.createElement("a");
       add.className = "add";
-      add.textContent = "Add to calendar";
+      add.textContent = "Add this event";
       add.href = makeSingleEventICS(event);
       add.download = `${(event.title || "event").replace(/[\\/:*?"<>|]/g,"-")}.ics`;
       add.setAttribute("aria-label", `Download ${event.title} as a calendar event`);
@@ -377,7 +364,6 @@
 
         if(month !== currentMonth){
           currentMonth = month;
-
           currentSection = document.createElement("section");
           currentSection.className = "month";
 
